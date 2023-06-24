@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while(*format)
+	while (*format)
 	{
 		if (*format != '%')
 		{
@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 				break;
 			case 's':
 				s = va_arg(args, char *);
-				while(*s++)
+				while (*s++)
 					_putchar(*s);
 				break;
 			case '%':

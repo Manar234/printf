@@ -11,6 +11,8 @@ int _printf(const char *format, ...)
 {
 	int i;
 	int len;
+	char cval, pval;
+	char *sval;
 	va_list args;
 
 	len = strlen(format);
@@ -18,18 +20,25 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 
 	for (i = 0; i < len; i++)
-	{	
+	{
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
 			continue;
 		}
-
-		switch(format[++i])
+		switch (format[++i])
 		{
 			case 'c':
+				cval = (char)va_arg(args, int);
+				_putchar(cval);
 				break;
 			case 's':
+				sval = va_arg(args, char *);
+				printf("%s", sval);
+				break;
+			case '%':
+				pval = (char)va_arg(args, int);
+				_putchar(pval);
 				break;
 			default:
 				break;

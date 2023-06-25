@@ -1,6 +1,7 @@
 #include "main.h"
-
+#include <string.h>
 #include <stdint.h>
+#include <string.h>
 /**
  * _printf - function to print
  * @format: the arguments
@@ -42,5 +43,28 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 
-	return (lenght);
+	return (length);
+}
+/**
+ * p_per - print a percent
+ * @args: the arguments
+ * Return: a percent
+ */
+int p_per(__attribute__((unused)) va_list args)
+{
+        _putchar('%');
+        return (1);
+}
+/**
+ * p_int - print an integer
+ * @args: the arguments
+ * Return: int
+ */
+int p_int(va_list args)
+{
+        int num;
+
+        num = print_number(args);
+
+        return (num);
 }

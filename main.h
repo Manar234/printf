@@ -1,24 +1,42 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdarg.h>
-#include<string.h>
-#include<unistd.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <stdint.h>
+/**
+ * struct func - struct
+ * @sm: char
+ * @f: pointer function
+ */
+struct func
+{
 
-/* Helper functions */
-void handle_specifier(char ch, va_list args, int count);
+	char *sm;
 
+	int (*f)(va_list);
 
+};
 
-int _printf(const char *format, ...);
+typedef struct func func_t;
+
 int _putchar(char c);
 
-typedef struct fn
-{
-	char *g;
-	int (*f)(va_list)
-}f_v;
+int _printf(const char *format, ...);
 
-#endif /*MAIN_H*/
+void _vprintf(const char *format, va_list args);
+
+int parser(const char *format, func_t funct_list[], va_list args);
+
+int p_c(va_list);
+
+int p_str(va_list args);
+
+int p_per(va_list);
+
+int print_unsgined_number(unsigned int n);
+
+int print_number(va_list);
+
+int p_int(va_list);
+#endif

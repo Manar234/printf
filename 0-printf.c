@@ -9,38 +9,32 @@
 
 int _printf(const char *format, ...)
 {
-	char *s;
+	int flag = 0;
+	int count = 0;
 	va_list args;
 
 	va_start(args, format);
-
 	while (*format)
 	{
-		if (*format != '%')
+		/* normal character: 0, conversion specifier char: 1 */
+		if (flag == 0)
 		{
-			_putchar(*format);
-			format++;
-			continue;
+			if (*format == '%')
+				flag = 1;
+			else
+			{
+				_putchar(*format);
+				count++;
+			}
 		}
-		switch (*format++)
+		else if (flag == 1)
 		{
-			case 'c':
-				_putchar((char)va_arg(args, int));
-				break;
-			case 's':
-				s = va_arg(args, char *);
-				while (*s++)
-					_putchar(*s);
-				break;
-			case '%':
-				_putchar((char)va_arg(args, int));
-				break;
+			/* handle specifier function */
+			handle_specifier(*format, args, count);
+			flag = 0;
 		}
+		format++;
 	}
-
 	va_end(args);
-
-	return (strlen(format));
+	return (count);
 }
-
-

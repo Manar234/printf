@@ -52,8 +52,8 @@ int _printf(const char *format, ...)
  */
 int p_per(__attribute__((unused)) va_list args)
 {
-        _putchar('%');
-        return (1);
+	_putchar('%');
+	return (1);
 }
 /**
  * p_int - print an integer
@@ -62,9 +62,9 @@ int p_per(__attribute__((unused)) va_list args)
  */
 int p_int(va_list args)
 {
-        int num;
+	int num;
 
-        num = print_number(args);
+	num = print_number(args);
 
-        return (num);
+	return (num);
 }

@@ -25,8 +25,6 @@ int _printf(const char *format, ...)
 		{NULL, NULL}
 	};
 
-
-
 	va_list args;
 
 	if (format == NULL)
@@ -35,11 +33,8 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	/** call a parser function*/
-
-
-
-	length = parser(format, funct_list, args);
+	/** check for conversion specifier  */
+	length = conv_spec(format, funct_list, args);
 
 	va_end(args);
 
@@ -50,16 +45,19 @@ int _printf(const char *format, ...)
  * @args: the arguments
  * Return: a percent
  */
+
 int p_per(__attribute__((unused)) va_list args)
 {
 	_putchar('%');
 	return (1);
 }
+
 /**
  * p_int - print an integer
  * @args: the arguments
  * Return: int
  */
+
 int p_int(va_list args)
 {
 	int num;

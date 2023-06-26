@@ -1,14 +1,14 @@
 #include "main.h"
 /**
- * parser - a function to loop through the format string
+ * conv_spec - a function to loop through the format string
  * @format: a string
  * @funct_list: an array of struct
  * @args: args of type va_list
  * Return: an int
  */
-int parser(const char *format, func_t funct_list[], va_list args)
+int conv_spec(const char *format, func_t funct_list[], va_list args)
 {
-	int i, j, r_val, length;
+	int i, j, found, length;
 
 	length = 0;
 	for (i = 0; format[i] != '\0'; i++)
@@ -19,10 +19,10 @@ int parser(const char *format, func_t funct_list[], va_list args)
 			{
 				if (format[i + 1] == funct_list[j].sm[0])
 				{
-					r_val = funct_list[j].f(args);
-					if (r_val == -1)
+					found = funct_list[j].f(args);
+					if (found == -1)
 						return (-1);
-					length += r_val;
+					length += found;
 					break;
 				}
 			}

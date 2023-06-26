@@ -24,7 +24,7 @@ int _putchar(char c);
 
 int _printf(const char *format, ...);
 
-int parser(const char *format, func_t funct_list[], va_list args);
+int conv_spec(const char *format, func_t funct_list[], va_list args);
 
 int p_c(va_list);
 

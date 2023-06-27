@@ -27,7 +27,7 @@ int print_number(va_list args)
 	}
 	else
 		num = digit;
-	while (num / check > 9)
+	while ((num / check) > 9)
 		check *= 10;
 	while (check != 0)
 	{
@@ -39,10 +39,10 @@ int print_number(va_list args)
 }
 /**
  * print_unsigned_number - print an unsigned number
- * @n: unsigned num
+ * @args: list of variadic arguments
  * Return: unsigned number
  */
-int print_unsigned_number(unsigned int n)
+int print_unsigned_number(va_list args)
 {
 	int check;
 
@@ -52,9 +52,9 @@ int print_unsigned_number(unsigned int n)
 
 	check = 1;
 	len = 0;
-	num = n;
+	num = va_arg(args, unsigned int);
 
-	while (num / check > 9)
+	while ((num / check) > 9)
 		check *= 10;
 	while (check != 0)
 	{
@@ -65,11 +65,11 @@ int print_unsigned_number(unsigned int n)
 	return (len);
 }
 /**
- * p_c - print a char
+ * print_char - print a char
  * @args: the arguments
  * Return: char
  */
-int p_c(va_list args)
+int print_char(va_list args)
 {
 	char value;
 
@@ -79,11 +79,11 @@ int p_c(va_list args)
 	return (1);
 }
 /**
- * p_str - print an string
+ * print_string - print an string
  * @args: the arguments
  * Return: string
  */
-int p_str(va_list args)
+int print_string(va_list args)
 {
 	int i;
 
@@ -96,4 +96,32 @@ int p_str(va_list args)
 	for (i = 0; s[i] != '\0'; i++)
 		_putchar(s[i]);
 	return (i);
+}
+
+/**
+ * print_binary - print a digit in binary format
+ * @args: the arguments
+ * Return: binary number
+ */
+
+int print_binary(va_list args)
+{
+	unsigned int num;
+	int arr[50];
+	int i, len;
+
+	len = 0;
+	num = va_arg(args, unsigned int);
+
+	i = 0;
+	while (num)
+	{
+		arr[i++] = num % 2;
+		num = num / 2;
+	}
+	i--;
+	for (; i >= 0; i--)
+		len += _putchar(arr[i] + '0');
+
+	return (len);
 }

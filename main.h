@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <unistd.h>
 /**
  * struct func - struct
  * @sm: char
@@ -26,15 +27,18 @@ int _printf(const char *format, ...);
 
 int conv_spec(const char *format, func_t funct_list[], va_list args);
 
-int p_c(va_list);
+int print_char(va_list);
 
-int p_str(va_list args);
+int print_string(va_list args);
 
-int p_per(va_list);
+int print_percent(va_list);
 
-int print_unsgined_number(unsigned int n);
+int print_unsigned_number(va_list);
 
 int print_number(va_list);
 
-int p_int(va_list);
+int print_integer(va_list);
+
+int print_binary(va_list);
+
 #endif

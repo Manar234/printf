@@ -97,31 +97,3 @@ int print_string(va_list args)
 		_putchar(s[i]);
 	return (i);
 }
-
-/**
- * print_binary - print a digit in binary format
- * @args: the arguments
- * Return: binary number
- */
-
-int print_binary(va_list args)
-{
-	unsigned int num;
-	int arr[50];
-	int i, len;
-
-	len = 0;
-	num = va_arg(args, unsigned int);
-
-	i = 0;
-	while (num)
-	{
-		arr[i++] = num % 2;
-		num = num / 2;
-	}
-	i--;
-	for (; i >= 0; i--)
-		len += _putchar(arr[i] + '0');
-
-	return (len);
-}

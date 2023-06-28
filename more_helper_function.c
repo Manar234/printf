@@ -126,9 +126,14 @@ int print_address(va_list args)
 	unsigned long mem_address;
 	int arr[50];
 	char alpha_num[] = "0123456789abcdef";
+	void *address = va_arg(args, void *);
 
 	len = 0;
-	mem_address = (unsigned long)(va_arg(args, void *));
+
+	if (address == NULL)
+		return (write(1, "(nil)", 5));
+
+	mem_address = (unsigned long)address;
 
 	i = 0;
 	while (mem_address)

@@ -114,3 +114,34 @@ int print_hex_up(va_list args)
 	return (len);
 }
 
+/**
+ * print_address - print the address of a memory locaation
+ * @args: the list of variadic arguments
+ * Return: the memory address
+ */
+
+int print_address(va_list args)
+{
+	int i, len;
+	unsigned long mem_address;
+	int arr[50];
+	char alpha_num[] = "0123456789abcdef";
+
+	len = 0;
+	mem_address = (unsigned long)(va_arg(args, void *));
+
+	i = 0;
+	while (mem_address)
+	{
+		arr[i++] = alpha_num[mem_address % 16];
+		mem_address = mem_address / 16;
+	}
+	arr[i++] = 'x';
+	arr[i++] = '0';
+
+	i--;
+	for (; i >= 0; i--)
+		len += _putchar(arr[i]);
+
+	return (len);
+}

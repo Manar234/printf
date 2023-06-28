@@ -41,5 +41,6 @@ int print_binary(va_list);
 int print_octal(va_list);
 int print_hex_low(va_list);
 int print_hex_up(va_list);
+int print_address(va_list);
 
 #endif

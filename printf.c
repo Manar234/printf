@@ -12,6 +12,7 @@
 int _printf(const char *format, ...)
 {
 	int length;
+	va_list args;
 
 	func_t funct_list[] = {
 		{"c", print_char},
@@ -26,9 +27,7 @@ int _printf(const char *format, ...)
 		{"X", print_hex_up},
 		{"p", print_address},
 		{NULL, NULL}
-	};
-
-	va_list args;
+	};	
 
 	if (format == NULL)
 
@@ -36,7 +35,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	/** check for conversion specifier  */
+	/* check for conversion specifier  */
 	length = conv_spec(format, funct_list, args);
 
 	va_end(args);
@@ -44,17 +43,6 @@ int _printf(const char *format, ...)
 	return (length);
 }
 
-/**
- * print_percent - print a percent
- * @args: the arguments
- * Return: a percent
- */
-
-int print_percent(__attribute__((unused)) va_list args)
-{
-	_putchar('%');
-	return (1);
-}
 
 /**
  * print_integer - print an integer

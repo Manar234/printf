@@ -97,3 +97,15 @@ int print_string(va_list args)
 		_putchar(s[i]);
 	return (i);
 }
+
+/**
+ * print_percent - print a percent
+ * @args: the arguments
+ * Return: a percent
+ */
+
+int print_percent(__attribute__((unused)) va_list args)
+{
+	_putchar('%');
+	return (1);
+}

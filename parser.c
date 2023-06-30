@@ -8,16 +8,16 @@
  */
 int conv_spec(const char *format, func_t funct_list[], va_list args)
 {
-	int i, j, found, length;
+	int i, j, length, found;
 
 	length = 0;
-	for (i = 0; format[i] != '\0'; i++)
+	for (i = 0; *(format + i) != '\0'; i++)
 	{
-		if (format[i] == '%') /* loop through format string */
+		if (*(format + i) == '%') /* loop through format string */
 		{
 			for (j = 0; funct_list[j].sm != NULL; j++) /* loop through struct */
 			{
-				if (format[i + 1] == funct_list[j].sm[0])
+				if (*(format + i + 1) == funct_list[j].sm[0])
 				{
 					found = funct_list[j].f(args);
 					if (found == -1)
@@ -26,12 +26,12 @@ int conv_spec(const char *format, func_t funct_list[], va_list args)
 					break;
 				}
 			}
-			if (funct_list[j].sm == NULL && format[i + 1] != ' ')
-			{
-				if (format[i + 1] != '\0')
+			if (funct_list[j].sm == NULL && *(format + i + 1) != ' ') /* check if conversion_specifier is NULL */ 
+			{														/* and the next character is not an empty string */
+				if (*(format + i + 1) != '\0')
 				{
-					_putchar(format[i]);
-					_putchar(format[i + 1]);
+					_putchar(*(format + i));
+					_putchar(*(format + i + 1));
 					length = length + 2;
 				}
 				else
@@ -41,7 +41,7 @@ int conv_spec(const char *format, func_t funct_list[], va_list args)
 		}
 		else
 		{
-			_putchar(format[i]);
+			_putchar(*(format + i));
 			length++;
 		}
 	}
